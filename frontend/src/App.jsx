@@ -9,22 +9,26 @@ import ProductList from "./pages/Main/ProductList";
 import CreatePurchaseOrder from "./pages/Main/CreatePurchaseOrder";
 
 const PrivateRoute = ({ children }) => {
-  const { user } = useAuth();
+  let { user } = useAuth();
+  user = { id: 1, name: "John Doe" }; // Temporary hardcoded user for testing
   return user ? children : <Navigate to="/login" />;
 };
 
 const App = () => {
-  const { user } = useAuth();
+  let { user } = useAuth();
+  user = { id: 1, name: "John Doe" }; // Temporary hardcoded user for testing
 
   return (
     <Routes>
       <Route
         path="/login"
-        element={user ? <Navigate to="/dashboard" /> : <Login />}
+        element={user ? <Navigate to="/dashboard" /> : <Login />   }
+        // element={<Dashboard/>}
       />
       <Route
         path="/register"
         element={user ? <Navigate to="/dashboard" /> : <Register />}
+        // element={<Dashboard/>}
       />
 
       <Route path="/" element={<MainLayout />}>
