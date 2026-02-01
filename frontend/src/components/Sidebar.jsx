@@ -9,13 +9,12 @@ import {
   Settings,
   Menu,
   X,
-  ChevronDown,
 } from "lucide-react";
 import { Outlet } from "react-router-dom";
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
   const [activeMenu, setActiveMenu] = useState("Dashboard");
 
   const menuItems = [
@@ -33,26 +32,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div
-      className="flex w-full h-screen bg-white overflow-hidden"
-      style={{ fontFamily: "'Inter', sans-serif" }}
-    >
-      {/* Mobile Hamburger */}
-      <button
-        onClick={() => setIsSidebarOpen(true)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white shadow border border-gray-200 text-gray-600 hover:bg-gray-50"
-      >
-        <Menu size={20} />
-      </button>
-
-      {/* Mobile Overlay */}
-      {isSidebarOpen && (
-        <div
-          className="lg:hidden fixed inset-0 bg-black/40 z-30"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
-
+    <>
       {/* Sidebar */}
       <aside
         className={`
@@ -144,53 +124,7 @@ const Navbar = () => {
           </button>
         </div>
       </aside>
-
-      {/* Main Content */}
-      <div className="flex-1 w-full flex flex-col min-w-0">
-        {/* Header */}
-        <header className="h-14 border-b border-gray-200 bg-white flex items-center justify-end px-6 flex-shrink-0">
-          {/* Profile Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setIsProfileOpen(!isProfileOpen)}
-              className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              <img
-                src="https://ui-avatars.com/api/?name=Debdut+Karpask&background=c0c0c0&color=555&size=32"
-                alt="Tom Cook"
-                className="w-7 h-7 rounded-full object-cover"
-              />
-              <span className="text-sm font-semibold text-gray-800">
-                Debdut Karpas
-              </span>
-              <ChevronDown
-                size={14}
-                className={`text-gray-400 transition-transform duration-200 ${isProfileOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-
-            {/* Dropdown */}
-            {isProfileOpen && (
-              <>
-                <div
-                  className="fixed inset-0 z-10"
-                  onClick={() => setIsProfileOpen(false)}
-                />
-                <div className="absolute right-0 mt-1.5 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-20 overflow-hidden">
-                  <button className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                    Your profile
-                  </button>
-                  <button className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                    Sign out
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-        </header>
-        <Outlet />
-      </div>
-    </div>
+    </>
   );
 };
 
