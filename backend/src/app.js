@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
-import connectToDatabase from "./config/database";
+import { apiRouter } from "./routes/index.js";
+import connectToDatabase from "./config/database.js";
 
 dotenv.config();
 const app = express();
@@ -58,6 +59,8 @@ const startServer = async () => {
 
 startServer();
 // Routes
+
+app.use('/api/v1', apiRouter);
 
 
 export default app;
