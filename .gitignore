@@ -6,4 +6,4 @@
 # folderB/logs/
 
 # Ignore .env files anywhere
-**/.env
+# **/.env
